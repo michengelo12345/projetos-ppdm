@@ -1,0 +1,165 @@
+Aqui está o **exemplo completo da Prova Prática do dia 29/09/2026** baseada estritamente no `meu_cracha_app` (Aula 03).
+
+Ela foi desenhada para ser entregue impressa ou projetada na sala, contendo o código parcial (com as lacunas para preenchimento no terminal do Servidor Debian) e o resultado visual que eles precisam alcançar no navegador.
+
+# 📄 PROVA PRÁTICA: DESENVOLVIMENTO DE APLICAÇÃO MOBILE (PPDM)
+
+**Módulo:** Aula 03 – Widgets Básicos e Layouts (`meu_cracha_app`)
+
+**Servidor de Execução:** Debian Local (`~/projetos_ppdm/meu_cracha_app`)
+
+**Data:** 29/09/2026 | **Valor:** 100,0 Pontos | **Nota Mínima de Aprovação:** 50,0 Pontos
+
+### 📍 INSTRUÇÕES DE EXECUÇÃO NO TERMINAL (SERVIDOR DEBIAN)
+
+1. Acesse o servidor Debian via SSH e copie o projeto base para a sua pasta:
+
+cp -r "/00 - turma t2dev-t3/04 - SEMESTRE/curso-ppdm/projetos_ppdm/meu_cracha_app" ~/projetos_ppdm/
+
+cd ~/projetos_ppdm/meu_cracha_app
+
+2. Edite o arquivo `lib/main.dart` no editor do terminal/SSH completando os **5 DESAFIOS** descritos nos comentários do código abaixo.
+
+3. Teste a aplicação rodando o servidor web no Debian:
+
+flutter run -d web-server --web-port 8080 --web-hostname 0.0.0.0
+
+4. Verifique a tela final no navegador da sua bancada (`http://<IP_DO_DEBIAN>:8080`).
+
+5. Ao finalizar, realize o commit e push no terminal para o seu GitHub e submeta o link e o `main.dart` no Google Forms.
+
+### 💻 CÓDIGO DA PROVA (`lib/main.dart`)
+
+*(Complete os trechos marcados com `// TODO: DESAFIO X`)*
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const CrachaApp());
+}
+
+class CrachaApp extends StatelessWidget {
+  const CrachaApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Crachá do Desenvolvedor'),
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+        ),
+        body: Center(
+          child: Container(
+            width: 320,
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: const [
+                BoxShadow(color: Colors.black26, blurRadius: 8),
+              ],
+              
+              // ===============================================================
+              // DESAFIO 5 (VALOR: 20 PONTOS) - DECORAÇÃO E GRADIENTE
+              // Configure o fundo do cartão com um LinearGradient aplicando 
+              // as cores Colors.indigo e Colors.blueAccent.
+              // ===============================================================
+              gradient: const LinearGradient(
+                colors: [
+                  // TODO: Insira a primeira cor aqui,
+                  // TODO: Insira a segunda cor aqui,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                
+                // ===============================================================
+                // DESAFIO 1 (VALOR: 20 PONTOS) - FOTO DE PERFIL
+                // Adicione a foto de perfil usando um CircleAvatar com raio 50
+                // e carregando uma imagem via NetworkImage.
+                // ===============================================================
+                const CircleAvatar(
+                  radius: 50,
+                  // TODO: Adicione a propriedade backgroundImage usando NetworkImage
+                  // URL de teste: 'https://github.com/identicons/user.png'
+                ),
+                
+                const SizedBox(height: 15),
+                
+                const Text(
+                  'Seu Nome Completo',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                
+                // ===============================================================
+                // DESAFIO 2 (VALOR: 20 PONTOS) - ESTILIZAÇÃO E BIOGRAFIA
+                // Adicione a biografia/cargo do desenvolvedor em texto itálico
+                // e com tamanho de fonte 14.
+                // ===============================================================
+                const Text(
+                  'Desenvolvedor Mobile Flutter / SENAI',
+                  style: TextStyle(
+                    color: Colors.white70,
+                    // TODO: Adicione a propriedade para deixar a fonte em itálico (fontStyle)
+                  ),
+                ),
+                
+                const Divider(color: Colors.white38, height: 30),
+                
+                // ===============================================================
+                // DESAFIO 3 (VALOR: 20 PONTOS) - ALINHAMENTO DE SKILLS (ROW)
+                // Crie uma linha (Row) com alinhamento horizontal centralizado 
+                // contendo 3 Chips com as habilidades: 'Dart', 'Flutter', 'Git'.
+                // ===============================================================
+                const Row(
+                  // TODO: Adicione a propriedade de alinhamento principal no centro
+                  children: [
+                    Chip(label: Text('Dart')),
+                    SizedBox(width: 5),
+                    // TODO: Adicione o segundo Chip aqui ('Flutter'),
+                    SizedBox(width: 5),
+                    // TODO: Adicione o terceiro Chip aqui ('Git'),
+                  ],
+                ),
+                
+                const SizedBox(height: 15),
+                
+                // ===============================================================
+                // DESAFIO 4 (VALOR: 20 PONTOS) - COMPILAÇÃO E ESTRUTURA
+                // Garanta que todo o código compile sem erros no Debian 
+                // e apresente o layout simétrico e alinhado na tela.
+                // ===============================================================
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+### 📊 RUBRICA DE PONTUAÇÃO (GUIA DE CORREÇÃO RÁPIDA)
+
+Na hora de avaliar o `main.dart` enviado pelo aluno via Forms (ou ao conferir na mesa):
+
+| Item | Requisito Esperado no Código | Pontos |
+| --- | --- | --- |
+| **Desafio 1** | Implementou `backgroundImage: NetworkImage(...)` dentro do `CircleAvatar`. | **20,0** |
+| **Desafio 2** | Aplicou `fontStyle: FontStyle.italic` corretamente na `TextStyle`. | **20,0** |
+| **Desafio 3** | Usou `mainAxisAlignment: MainAxisAlignment.center` e criou os 3 `Chips`. | **20,0** |
+| **Desafio 4** | O projeto compila no Debian sem erros de sintaxe e roda no navegador. | **20,0** |
+| **Desafio 5** | Preencheu a lista `colors:` do `LinearGradient` com `Colors.indigo` e `Colors.blueAccent`. | **20,0** |
+
+### 🎯 RESULTADO ESPERADO DA TELA
+
+O aluno que resolver os 5 desafios no Debian verá no navegador um cartão arredondado com **fundo gradiente azul/índigo**, **foto circular** no topo, **texto do cargo em itálico** e **três etiquetas (chips)** de habilidades centralizadas no rodapé do crachá.
