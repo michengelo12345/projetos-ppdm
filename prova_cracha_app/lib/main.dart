@@ -40,8 +40,8 @@ class MeuCrachaApp extends StatelessWidget {
               // ===============================================================
               gradient: const LinearGradient(
                 colors: [
-                  // TODO: Primeira cor do gradiente,
-                  // TODO: Segunda cor do gradiente,
+                  Color(0xFF455A64),
+                  Color(0xFF263238),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -66,7 +66,7 @@ class MeuCrachaApp extends StatelessWidget {
                 const SizedBox(height: 15),
                 
                 const Text(
-                  'Seu Nome Completo',
+                  'Michelangelo Rasa Neto',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
