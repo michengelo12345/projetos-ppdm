@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'widgets/bloco_estatistica.dart';
 
@@ -37,23 +38,23 @@ class TelaDashboard extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          // DESAFIO 2: centraliza os elementos da Column principal.
+
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
               'Resumo das Observações',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16.0),
 
-            // DESAFIO 1: três cards na Row, utilizando Expanded
-            // por meio do componente BlocoEstatistica.
-            //
-            // DESAFIO 7: a primeira linha foi componentizada.
-            Row(
+            GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisSpacing: 12.0,
+              mainAxisSpacing: 12.0,
+              childAspectRatio: 1.15,
               children: const [
                 BlocoEstatistica(
                   icone: Icons.flutter_dash,
@@ -61,59 +62,54 @@ class TelaDashboard extends StatelessWidget {
                   rotulo: 'Aves Vistas',
                   corFundo: Color(0xFFB2DFDB),
                 ),
-                SizedBox(width: 12.0),
                 BlocoEstatistica(
                   icone: Icons.place,
                   valor: '18',
                   rotulo: 'Locais Visitados',
                   corFundo: Color(0xFFE0F2F1),
                 ),
-                SizedBox(width: 12.0),
                 BlocoEstatistica(
                   icone: Icons.camera_alt,
                   valor: '45',
                   rotulo: 'Fotos',
+                  corFundo: Color(0xFFE0F2F1),
+                ),
+                BlocoEstatistica(
+                  icone: Icons.assignment,
+                  valor: '32',
+                  rotulo: 'Registros',
                   corFundo: Color(0xFFB2DFDB),
                 ),
               ],
             ),
-
             const SizedBox(height: 24.0),
 
             const Text(
               'Destaque da Semana',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16.0),
 
-            // DESAFIOS 5 e 6: Stack com dois selos e Card elevado.
+            // DESAFIOS 5 e 6: Stack com dois selos sobrepostos e Card Material.
             Stack(
               clipBehavior: Clip.none,
               children: [
                 Card(
                   elevation: 4,
+                  margin: EdgeInsets.zero,
+                  color: Colors.grey.shade100,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Container(
-                    width: double.infinity,
+                  child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Row(
+                    child: Row(
                       children: [
-                        Icon(
-                          Icons.star,
-                          size: 48,
-                          color: Colors.amber,
-                        ),
-                        SizedBox(width: 16),
-                        Expanded(
+                        const Icon(Icons.star, size: 48, color: Colors.amber),
+                        const SizedBox(width: 16),
+                        // Expanded mantém o texto dentro dos limites do Card.
+                        const Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -135,16 +131,12 @@ class TelaDashboard extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // Selo Raro, no canto superior direito.
                 Positioned(
                   top: -8,
                   right: -8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(12),
@@ -159,16 +151,13 @@ class TelaDashboard extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // DESAFIO 5: selo Confirmado, no canto inferior esquerdo.
+                // DESAFIO 5: segundo selo no canto inferior esquerdo.
                 Positioned(
                   bottom: -8,
                   left: -8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(12),
@@ -188,20 +177,25 @@ class TelaDashboard extends StatelessWidget {
 
             const SizedBox(height: 24.0),
 
-            // DESAFIO 3: seção Últimos Registros.
+            // DESAFIO 3: seção com Row e MainAxisAlignment.spaceBetween.
             Container(
-              padding: const EdgeInsets.all(16.0),
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 14.0,
+              ),
               decoration: BoxDecoration(
                 color: Colors.teal.shade50,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.teal.shade100),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Row(
                     children: [
-                      Icon(Icons.list_alt, color: Colors.teal),
-                      SizedBox(width: 8),
+                      Icon(Icons.list_alt, color: Colors.teal, size: 26),
+                      SizedBox(width: 10),
                       Text(
                         'Últimos Registros',
                         style: TextStyle(
@@ -211,48 +205,18 @@ class TelaDashboard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  IconButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Seção de últimos registros selecionada.',
-                          ),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.arrow_forward),
-                    tooltip: 'Ver registros',
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                    color: Colors.teal,
                   ),
                 ],
               ),
             ),
-
-            const SizedBox(height: 16.0),
-
-            // DESAFIO 4: demonstração documentada de RenderFlex overflow.
-            //
-            // Uma Row pode causar overflow quando a soma das larguras
-            // dos filhos excede a largura disponível.
-            //
-            // Exemplo de reprodução:
-            //
-            // Row(
-            //   children: [
-            //     Container(width: 250, height: 50),
-            //     Container(width: 250, height: 50),
-            //   ],
-            // )
-            //
-            // Correções possíveis:
-            // - Utilizar Expanded ou Flexible.
-            // - Reorganizar os elementos em uma grade.
-            // - Adaptar o layout à largura disponível.
-            //
-            // O exemplo permanece comentado para manter a tela funcional.
           ],
         ),
       ),
     );
   }
 }
+
