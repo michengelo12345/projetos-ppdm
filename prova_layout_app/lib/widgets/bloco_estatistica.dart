@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// DESAFIO 7: componente reutilizável para os cards de estatística.
 class BlocoEstatistica extends StatelessWidget {
   final IconData icone;
   final String valor;
@@ -24,11 +25,29 @@ class BlocoEstatistica extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icone, size: 36, color: Colors.teal),
+            Icon(
+              icone,
+              size: 36,
+              color: Colors.teal,
+            ),
             const SizedBox(height: 8),
-            Text(valor, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-            Text(rotulo, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+            Text(
+              valor,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              rotulo,
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),
