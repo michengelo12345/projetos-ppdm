@@ -1,97 +1,152 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MeuCrachaApp());
+  runApp(const CrachaApp());
 }
 
-class MeuCrachaApp extends StatelessWidget {
-  const MeuCrachaApp({super.key});
+class CrachaApp extends StatelessWidget {
+  const CrachaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'PPDM - Cracha Digital',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
+      home: Scaffold(
+        backgroundColor: Colors.blueGrey[900],
+        appBar: AppBar(
+          title: const Text('Crachá Digital'),
+          centerTitle: true,
+          backgroundColor: Colors.blueGrey[800],
+        ),
+        body: const Center(
+          child: CartaoCracha(),
+        ),
       ),
-      home: const TelaCracha(),
     );
   }
 }
 
-class TelaCracha extends StatelessWidget {
-  const TelaCracha({super.key});
+class CartaoCracha extends StatelessWidget {
+  const CartaoCracha({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PPDM - Identificacao Estudantil'),
-        centerTitle: true,
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
-      ),
-      body: Center(
-        child: Container(
-          width: 320,
-          padding: const EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
-            color: Colors.indigo.shade50,
-            borderRadius: BorderRadius.circular(16.0),
-            border: Border.all(color: Colors.indigo, width: 2.0),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 10,
-                offset: Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.indigo,
-                child: Icon(Icons.person, size: 50, color: Colors.white),
-              ),
-              const SizedBox(height: 12.0),
-              const Text(
-                'Ana Silva Santos',
-                style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.indigo,
-                ),
-              ),
-              const Text(
-                'Desenvolvimento Mobile / PPDM',
-                style: TextStyle(
-                  fontSize: 14.0,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const Divider(height: 24, thickness: 1),
-              Row(
-                children: const [
-                  Icon(Icons.badge, color: Colors.indigo),
-                  SizedBox(width: 10),
-                  Text('RA: 2026109923', style: TextStyle(fontSize: 16)),
-                ],
-              ),
-              const SizedBox(height: 8.0),
-              Row(
-                children: const [
-                  Icon(Icons.email, color: Colors.indigo),
-                  SizedBox(width: 10),
-                  Text('ana.silva@estudante.edu.br', style: TextStyle(fontSize: 14)),
-                ],
-              ),
-            ],
-          ),
+    return Container(
+      width: 320,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        // Exercício 4: fundo em gradiente (não use color junto com gradient)
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFFFFFFFF),
+            Color(0xFFE3F2FD),
+            Color(0xFFCFD8DC),
+          ],
         ),
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Exercício 1: foto real com NetworkImage
+          const CircleAvatar(
+            radius: 50,
+            backgroundColor: Colors.blueAccent,
+            backgroundImage: NetworkImage(
+              'https://images.tcdn.com.br/img/img_prod/741699/camera_eos_r100_com_lente_rf_s_18_45mm_1345_1_51837b084549d00c74f47876367b1a42.jpg',
+            ),
+          ),
+          const SizedBox(height: 15),
+          const Text(
+            'Michelangelo',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+          const Text(
+            'Desenvolvedor(a) Flutter',
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+              letterSpacing: 1.2,
+            ),
+          ),
+          const Divider(height: 30, thickness: 1),
+          // Exercício 2: seção Sobre Mim
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Desenvolvedor Mobile apaixonado pelo ecossistema Flutter & Dart 🚀. Transformo linhas de código em interfaces responsivas e aplicativos de alta performance para Android e iOS. Focado em código limpo, arquitetura escalável e na melhor experiência para o usuário final.',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          const Text(
+            'Estudante de desenvolvimento mobile. Gosto de criar interfaces simples e funcionais com Flutter e Dart.',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 13,
+              height: 1.4,
+              color: Colors.black54,
+            ),
+          ),
+          const SizedBox(height: 14),
+          // Exercício 3: habilidades com Chip dentro de uma Row
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Chip(
+                label: Text('Flutter'),
+                avatar: Icon(Icons.flutter_dash, size: 18),
+                visualDensity: VisualDensity.compact,
+                backgroundColor: Color(0xFFBBDEFB),
+              ),
+              Chip(
+                label: Text('Dart'),
+                avatar: Icon(Icons.code, size: 18),
+                visualDensity: VisualDensity.compact,
+                backgroundColor: Color(0xFFC8E6C9),
+              ),
+              Chip(
+                label: Text('Git'),
+                avatar: Icon(Icons.account_tree, size: 18),
+                visualDensity: VisualDensity.compact,
+                backgroundColor: Color(0xFFFFE0B2),
+              ),
+            ],
+          ),
+          const Divider(height: 30, thickness: 1),
+          const Row(
+            children: [
+              Icon(Icons.email, color: Colors.blueAccent),
+              SizedBox(width: 10),
+              Text('dev@email.com'),
+            ],
+          ),
+          const SizedBox(height: 10),
+          const Row(
+            children: [
+              Icon(Icons.phone, color: Colors.blueAccent),
+              SizedBox(width: 10),
+              Text('+55 (11) 99999-9999'),
+            ],
+          ),
+        ],
       ),
     );
   }
