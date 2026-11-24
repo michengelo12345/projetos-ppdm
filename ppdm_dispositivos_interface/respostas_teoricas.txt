@@ -1,0 +1,29 @@
+PPDM — FUNDAMENTOS DE DISPOSITIVOS MOVEIS
+
+1. DIFERENCA DE ARQUITETURAS
+
+Desenvolvimento Nativo:
+Utiliza linguagens e ferramentas especificas de cada sistema operacional. No Android, sao utilizadas principalmente Kotlin e Java; no iOS, Swift. Geralmente oferece acesso direto aos recursos do dispositivo e integracao especifica com a plataforma.
+
+Desenvolvimento Cross-Platform:
+Permite desenvolver aplicativos para diferentes sistemas operacionais utilizando uma unica base de codigo. O Flutter utiliza Dart e seu proprio mecanismo de renderizacao para construir interfaces em Android, iOS e outras plataformas.
+
+Principal diferenca:
+O desenvolvimento nativo utiliza tecnologias especificas de cada plataforma, enquanto o Cross-Platform permite compartilhar grande parte do codigo entre diferentes plataformas.
+
+2. STATELESSWIDGET E STATEFULWIDGET
+
+StatelessWidget:
+E um widget sem estado mutavel interno. Sua interface depende das informacoes recebidas durante sua construcao.
+Exemplo: uma tela de apresentacao, um logotipo ou um cartao com informacoes fixas.
+
+StatefulWidget:
+E um widget que possui um estado que pode mudar durante a execucao do aplicativo. Utiliza uma classe State e permite atualizar a interface por meio de setState().
+Exemplo: um formulario de cadastro, um contador ou uma tela que exibe informacoes digitadas pelo usuario.
+
+3. ARVORE DE WIDGETS E SETSTATE()
+
+Quando chamamos setState() dentro de um StatefulWidget, o Flutter e informado de que o estado daquele componente foi alterado. O framework agenda uma nova construcao da interface, executando novamente o metodo build() daquele estado. A arvore de widgets e atualizada e o Flutter compara a nova estrutura com a anterior para atualizar a interface visual conforme necessario.
+
+Importante:
+setState() nao reconstrói necessariamente todo o aplicativo. A atualizacao e direcionada a subarvore associada ao estado que foi modificado.
